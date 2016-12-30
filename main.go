@@ -94,7 +94,7 @@ func syncRepo(repo, dest, branch, rev string) error {
 	}
 
 	// fetch branch
-	cmd := exec.Command("git", "fetch", "origin", branch)
+	cmd := exec.Command("git", "pull", "origin", branch)
 	cmd.Dir = dest
 	output, err := cmd.CombinedOutput()
 	if err != nil {
