@@ -27,9 +27,9 @@ import (
 	"path"
 	"strconv"
 	"strings"
-	"time"
+	
 )
-
+//"time"
 var flRepo = flag.String("repo", envString("GIT_SYNC_REPO", ""), "git repo url")
 var flBranch = flag.String("branch", envString("GIT_SYNC_BRANCH", "master"), "git branch")
 var flRev = flag.String("rev", envString("GIT_SYNC_REV", "HEAD"), "git rev")
@@ -66,14 +66,18 @@ func main() {
 	if _, err := exec.LookPath("git"); err != nil {
 		log.Fatalf("required git executable not found: %v", err)
 	}
-	for {
-		if err := syncRepo(*flRepo, *flDest, *flBranch, *flRev); err != nil {
-			log.Fatalf("error syncing repo: %v", err)
-		}
-		log.Printf("wait %d seconds", *flWait)
-		time.Sleep(time.Duration(*flWait) * time.Second)
-		log.Println("done")
+	if err := syncRepo(*flRepo, *flDest, *flBranch, *flRev); err != nil {
+		log.Fatalf("error syncing repo: %v", err)	
 	}
+	log.Println("done")
+	//for {
+	//	if err := syncRepo(*flRepo, *flDest, *flBranch, *flRev); err != nil {
+	//		log.Fatalf("error syncing repo: %v", err)
+	//	}
+	//	log.Printf("wait %d seconds", *flWait)
+	//	time.Sleep(time.Duration(*flWait) * time.Second)
+	//	log.Println("done")
+	//}
 }
 
 // syncRepo syncs the branch of a given repository to the destination at the given rev.
