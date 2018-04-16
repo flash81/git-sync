@@ -1,5 +1,5 @@
-Forked from [kubernetes contrib]
-
+根目录为正式环境使用，每次更新代码时sudo docker-compose up -d后代码更新完自动停止git容器
+test目录为测试环境使用，代码实现定时拉取git仓库代码
 # Usage
 ## without docker compose
 ```bash
