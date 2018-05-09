@@ -89,7 +89,7 @@ func syncRepo(repo, dest, branch, rev string) error {
 	case os.IsNotExist(err):
 		// clone repo
 		cmd := exec.Command("git", "clone", "--no-checkout", "-b", branch, repo, dest)
-		log.Println(output)
+		log.Println(string(output))
 		//cmd.Stdin = strings.NewReader("yes\n")
 		output, err := cmd.CombinedOutput()
 		if err != nil {
